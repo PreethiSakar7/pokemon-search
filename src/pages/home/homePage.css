@@ -10,6 +10,7 @@
 .search-bar {
    display: flex;
    justify-content: flex-end;
+   margin-top: 20px;
 }
 
 .card-view{
@@ -63,4 +64,16 @@ h4 {
 }
 .base-card label, .stat-area span {
     font-weight: bold;
+}
+
+.switch-fav{
+    padding-right: 20px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #296bb2;
+    background-color: #296bb2;
 }

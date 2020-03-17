@@ -9,6 +9,13 @@ const usePokemonState = () => {
         switch(type) {
             case 'SET_POKEMON_LIST' :
                 return setPokemonList( () => [...payload]);
+            case 'SET_FAV' :
+                return pokemonList.map(poke => {
+                    if(poke.name === payload) {
+                      poke.isFav = !poke.isFav;
+                    }
+                    return poke;
+                  });
             default:
                 return pokemonList;
         }

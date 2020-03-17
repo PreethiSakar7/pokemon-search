@@ -7,7 +7,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // import for pages
 import HomePage from '../home/HomePage'
-import DetailPage from '../detail/DetailPage'
 import ComparePage from '../compare/ComparePage'
 
 // import components
@@ -27,15 +26,22 @@ function MainPage() {
   }, [state.pokemonList.length === 0]);
 
   const getAllPokeman = async () => {
-    const url = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1000';
-    const response = await fetch(url);
-    const jsonRes = await response.json();
-    jsonRes.results.forEach( type => {
-      const urlSplit = type.url.split('/');
-      let num = urlSplit[urlSplit.length -2];
-      type['id'] = num;
-    });
-    state.action({type:'SET_POKEMON_LIST', payload: jsonRes.results });
+    let localPokemonList = JSON.parse(localStorage.getItem('pokemonList'));
+    if (!localPokemonList) {
+      const url = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1000';
+      const response = await fetch(url);
+      const jsonRes = await response.json();
+      jsonRes.results.forEach( type => {
+        const urlSplit = type.url.split('/');
+        let num = urlSplit[urlSplit.length -2];
+        type['id'] = num;
+        type['isFav'] = false;
+      });
+      state.action({type:'SET_POKEMON_LIST', payload: jsonRes.results });
+      localStorage.setItem('pokemonList', JSON.stringify(jsonRes.results));
+    } else {
+      state.action({type:'SET_POKEMON_LIST', payload: localPokemonList });
+    }
   }
     return (
         <Fragment>
@@ -50,7 +56,6 @@ function MainPage() {
               
               <Switch>
                 <Route path="/" exact  component={HomePage} />
-                <Route path="/detail" component={DetailPage} />
                 <Route path="/compare" component={ComparePage} />
               </Switch>
             </div>
