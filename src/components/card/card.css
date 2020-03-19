@@ -56,6 +56,29 @@
 }
 
 .info-icon{
-    color: #2b6db5;
+    color: #f5deb3;
     margin-left: auto;
+}
+
+.header-card{
+    display: flex;
+}
+
+.compare-check{
+    margin-left: auto;
+}
+
+.compare-check label {
+    margin: 10px 10px 0px 10px;
+}
+
+.selectedCard{
+    box-shadow: 1px 2px 6px 5px #cdcdcd;
+    transform: translateX(-2px) translateY(-6px);
+}
+
+.disableCard{
+    opacity: 0.5;
+    pointer-events: none;
+    background: #cccccc;
 }

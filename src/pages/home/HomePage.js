@@ -10,18 +10,26 @@ import PokeCard from '../../components/card/Card'
 
 import Context from '../../store/context';
 
-function HomePage() {
+function HomePage(props) {
 
     const [selected, setSelected] = useState([]);
     const showFav = useRef();
+   // let compareList = useRef();
+    let isChecked = useRef();
    
     const { pokemonList, action } = useContext(Context);
     const [displayList, setDisplayList] = useState([]);
+    const [compareList, setCompareList] = useState([]);
 
     useEffect(() => {
         let firstArray = pokemonList.slice(0, 50);
         setDisplayList([...firstArray]);
     }, [pokemonList.length]);
+
+    useEffect( () => {
+        console.log(compareList);
+        // setCompareList([...compareList, selectedName.current]);
+    }, [compareList])
 
     const showOnlyFav = () => {
        if (showFav.current.checked) {
@@ -31,6 +39,20 @@ function HomePage() {
            let firstArray = pokemonList.slice(0, 50)
         setDisplayList([...firstArray]);
        }
+    }
+
+    const maintainCompareList = (checked, name) => {
+        if (checked) {
+            setCompareList([...compareList, name]);
+        } else {
+            setCompareList(compareList.filter(item => item !== name));
+        }
+        console.log(compareList);
+    }
+
+    const goToCompare = () => {
+        console.log('test');
+        props.history.push(`/compare/${compareList}`)
     }
 
     return (
@@ -58,11 +80,20 @@ function HomePage() {
                     placeholder="Search"
                     className="form-control search-input"
                 ></input>
+                <Button href="#" variant="warning" 
+                disabled={!(compareList.length === 2)}
+                style={ {opacity : compareList.length !== 2 ? '0.5' : '1'} }
+                onClick={goToCompare}>Compare</Button>
             </div>
             <div className="card-view">
                 {
                     displayList.map((val, index) => {
-                        return <PokeCard key={index} poke={val} isEditable={!showFav.current.checked}></PokeCard>
+                        return <PokeCard 
+                        key={index}
+                        poke={val}
+                        isDisable={compareList.length === 2 && !val.isCompare}
+                        isEditable={!showFav.current.checked} 
+                        onCompareClick={maintainCompareList}></PokeCard>
                     })
                 }
             </div>

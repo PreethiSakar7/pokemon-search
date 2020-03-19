@@ -36,6 +36,7 @@ function MainPage() {
         let num = urlSplit[urlSplit.length -2];
         type['id'] = num;
         type['isFav'] = false;
+        type['isCompare'] = false;
       });
       state.action({type:'SET_POKEMON_LIST', payload: jsonRes.results });
       localStorage.setItem('pokemonList', JSON.stringify(jsonRes.results));
@@ -56,7 +57,7 @@ function MainPage() {
               
               <Switch>
                 <Route path="/" exact  component={HomePage} />
-                <Route path="/compare" component={ComparePage} />
+                <Route path="/compare/:compareList" component={ComparePage} />
               </Switch>
             </div>
             </Context.Provider>

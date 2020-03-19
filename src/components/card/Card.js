@@ -3,7 +3,7 @@ import React, { useState, useRef, useContext, useEffect } from 'react'
 import './card.css'
 import DetailModal from '../../pages/detail/DetailModal'
 
-import { Button, Badge, Container, Modal, ProgressBar, Spinner, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Button, Badge, Container, Modal, ProgressBar, Spinner, OverlayTrigger, Tooltip, Form } from 'react-bootstrap';
 import Context from '../../store/context';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -37,6 +37,10 @@ function PokeCard(props) {
     const { pokemonList, action } = useContext(Context);
 
     const [isFav, setIsFav] = useState(props.poke.isFav);
+
+    const compareChecked = useRef();
+
+    let compareList = [];
 
     useEffect(() => {
         setIsFav(props.poke.isFav);
@@ -79,34 +83,49 @@ function PokeCard(props) {
         }
     }
 
+    const compareStats = () => {
+
+        action({ type: 'SET_COMPARE', payload: props.poke.name });
+        props.onCompareClick(props.poke.isCompare, props.poke.name)
+    }
+
     return (
         <>
-            <div className="card">
-                <span className="icon-holder" onClick={setFav}>
-                    {isFav ?
-                        <FontAwesomeIcon icon={faHeartSolit} className="fav-icon" size="lg" /> :
-                        <FontAwesomeIcon icon={faHeart} className="fav-icon" size="lg" />
-                    }
-                </span>
-
+            <div className={`card ${props.isDisable ? 'disableCard' : ''} ${props.poke.isCompare ? 'selectedCard' : ''}`}>
+                <div className="header-card">
+                    <span className="icon-holder" onClick={setFav}>
+                        {isFav ?
+                            <FontAwesomeIcon icon={faHeartSolit} className="fav-icon" size="lg" /> :
+                            <FontAwesomeIcon icon={faHeart} className="fav-icon" size="lg" />
+                        }
+                    </span>
+                    <span key="custom-checkbox" className="compare-check">
+                        <Form.Check
+                            custom
+                            value={props.poke.isCompare}
+                            type="checkbox"
+                            id={props.poke.id}
+                            label=" "
+                            onChange={compareStats}
+                        />
+                    </span>
+                </div>
                 <div className="card-image">
                     <img src={`https://pokeres.bastionbot.org/images/pokemon/${props.poke.id}.png`} ></img>
                 </div>
                 <div className="card-footer" onClick={onPokemonSelected}>
-                        <div className="card-footer-name">{props.poke.name}</div>
-                        
-                    
-                <OverlayTrigger
-                    key="bottom"
-                    placement="bottom"
-                    overlay={
-                        <Tooltip id={`tooltip-bottom`}>
-                            click to view detail.
+                    <div className="card-footer-name">{props.poke.name}</div>
+                    <OverlayTrigger
+                        key="bottom"
+                        placement="bottom"
+                        overlay={
+                            <Tooltip id={`tooltip-bottom`}>
+                                click to view detail.
                         </Tooltip>
-                    }
-                >
-                   <FontAwesomeIcon icon={faInfoCircle} className="info-icon" size="lg" />
-                </OverlayTrigger>
+                        }
+                    >
+                        <FontAwesomeIcon icon={faInfoCircle} className="info-icon" size="lg" />
+                    </OverlayTrigger>
                 </div>
             </div>
             <Modal show={show} onHide={handleClose}

@@ -16,6 +16,13 @@ const usePokemonState = () => {
                     }
                     return poke;
                   });
+            case 'SET_COMPARE':
+                return pokemonList.map(poke => {
+                    if (poke.name === payload) {
+                        poke.isCompare = !poke.isCompare;
+                    }
+                    return poke;
+                });
             default:
                 return pokemonList;
         }
