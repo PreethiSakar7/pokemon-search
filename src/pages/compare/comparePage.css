@@ -5,10 +5,15 @@
     margin-top: 20px;
 }
 
+.compare-area {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 .compare-header{
     display: flex;
     width: 100%;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 a {
@@ -16,7 +21,47 @@ a {
     padding: 8px;
 }
 
+.content:first-child{
+    border: none;
+} 
 .content{
     display: grid;
     grid-template-columns: 200px 200px 200px;
+    padding: 20px;
+    font-size: 20px;
+    border: 1px solid;
+    border-bottom: 0px;
+}
+
+.compare-area:last-child{
+    border-bottom: 1px solid;
+}
+
+.content span:first-child{
+    font-weight: bold;
+}
+
+.content span {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-col img{
+    width: 150px;
+    height: 150px;
+}
+
+.header-col span{
+    text-transform: uppercase;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.header-col{
+    flex-direction: column;
+}
+
+.row-header{
+    place-content: baseline;
 }

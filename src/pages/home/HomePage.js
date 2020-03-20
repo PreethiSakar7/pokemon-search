@@ -22,7 +22,7 @@ function HomePage(props) {
     const [compareList, setCompareList] = useState([]);
 
     useEffect(() => {
-        let firstArray = pokemonList.slice(0, 50);
+        let firstArray = pokemonList.slice(0, 200);
         setDisplayList([...firstArray]);
     }, [pokemonList.length]);
 
@@ -34,9 +34,9 @@ function HomePage(props) {
     const showOnlyFav = () => {
        if (showFav.current.checked) {
             let result = pokemonList.filter(poke => poke.isFav === true);
-            setDisplayList([...result.slice(0, 50)]);
+            setDisplayList([...result.slice(0, 200)]);
        } else {
-           let firstArray = pokemonList.slice(0, 50)
+           let firstArray = pokemonList.slice(0, 200)
         setDisplayList([...firstArray]);
        }
     }
@@ -75,14 +75,14 @@ function HomePage(props) {
                         let result = pokemonList.filter(poke => {
                             return poke.name.includes(query)
                         });
-                        setDisplayList([...result.slice(0, 50)]);
+                        setDisplayList([...result.slice(0, 200)]);
                     }}
                     placeholder="Search"
                     className="form-control search-input"
                 ></input>
                 <Button href="#" variant="warning" 
                 disabled={!(compareList.length === 2)}
-                style={ {opacity : compareList.length !== 2 ? '0.5' : '1'} }
+                style={ {opacity : compareList.length !== 2 ? '0.5' : '1', 'margin-left': '20px'} }
                 onClick={goToCompare}>Compare</Button>
             </div>
             <div className="card-view">
