@@ -82,7 +82,7 @@ function HomePage(props) {
                 ></input>
                 <Button href="#" variant="warning" 
                 disabled={!(compareList.length === 2)}
-                style={ {opacity : compareList.length !== 2 ? '0.5' : '1', 'margin-left': '20px'} }
+                style={ {opacity : compareList.length !== 2 ? '0.5' : '1', marginLeft: '20px'} }
                 onClick={goToCompare}>Compare</Button>
             </div>
             <div className="card-view">

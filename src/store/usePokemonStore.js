@@ -1,7 +1,7 @@
 import {useState} from 'react'
 
 const usePokemonState = () => {
-    const [pokemonList, setPokemonList] = useState([]);
+    const [pokemonList, setPokemonList] = useState([{name: 'loading...', favourt: 'false'}]);
 
     const action = (action) => {
         const {type, payload} = action;
