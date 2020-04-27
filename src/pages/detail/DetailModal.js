@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 
-import { Button, Badge, Container, Modal, ProgressBar, Spinner } from 'react-bootstrap';
+import { Badge, ProgressBar} from 'react-bootstrap';
 
 
 function DetailModal(props) {

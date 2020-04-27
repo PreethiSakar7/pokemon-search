@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Badge, Container, Modal, ProgressBar, Form } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import './comparePage.css'
 
 function ComparePage(props) {
@@ -47,13 +47,11 @@ function ComparePage(props) {
         return selectedItem;
     }
 
-    const getValue = (idx) => {
-        console.log(ToPoke.stats[idx])
-    }
+
     return (
         <Container fluid className="compare-layout">
             <div className="compare-header">
-            <Button href="/" variant="warning" 
+            <Button href="/pokemon-search" variant="warning" 
                 >Go Home</Button>
 
             </div>
@@ -67,7 +65,7 @@ function ComparePage(props) {
                             {fromPoke?.name}
                         </span>
                         <span>
-                            <img src={`https://pokeres.bastionbot.org/images/pokemon/${fromPoke?.id}.png`} ></img>
+                            <img src={`https://pokeres.bastionbot.org/images/pokemon/${fromPoke?.id}.png`} alt="poker"></img>
                         </span>
                     </span>
                     <span className="header-col">
@@ -75,7 +73,7 @@ function ComparePage(props) {
                             {ToPoke?.name}
                         </span>
                         <span>
-                            <img src={`https://pokeres.bastionbot.org/images/pokemon/${ToPoke?.id}.png`} ></img>
+                            <img src={`https://pokeres.bastionbot.org/images/pokemon/${ToPoke?.id}.png`} alt="poker"></img>
                         </span>
                     </span>
                 </div>

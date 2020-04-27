@@ -1,10 +1,9 @@
-import React, { Fragment, useState, useContext, useEffect, useRef } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 
 import './homePage.css'
 //lib
-import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
-import { Button, Badge, Container, Modal, ProgressBar, Form } from 'react-bootstrap';
+import { Button, Container, Form } from 'react-bootstrap';
 
 import PokeCard from '../../components/card/Card'
 
@@ -15,7 +14,6 @@ function HomePage(props) {
     const [selected, setSelected] = useState([]);
     const showFav = useRef();
    // let compareList = useRef();
-    let isChecked = useRef();
    
     const { pokemonList, action } = useContext(Context);
     const [displayList, setDisplayList] = useState([]);

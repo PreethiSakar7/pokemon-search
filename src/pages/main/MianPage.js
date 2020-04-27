@@ -1,7 +1,7 @@
-import React, { Fragment, useReducer, useContext, useEffect } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import style from "./MainPage.module.css";
 
-import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { Switch, Route, BrowserRouter as Router, Link} from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -13,7 +13,6 @@ import ComparePage from '../compare/ComparePage'
 import Header from '../../components/header/Header'
 
 import Context from '../../store/context';
-import reducer from '../../store/reducer';
 import usePokemonState from '../../store/usePokemonStore';
 
 function MainPage() {
@@ -47,21 +46,19 @@ function MainPage() {
     return (
         <Fragment>
         <div className={style.gridContainer}>
-          <BrowserRouter >
+          <Router>
           <Context.Provider value={ state } >
             <div className={style.header}>
               <Header />
             </div>
-  
             <div className={style.pages}>
-              
               <Switch>
-                <Route path="/" exact  component={HomePage} />
+                <Route exact path="/pokemon-search" component={HomePage}/>
                 <Route path="/compare/:compareList" component={ComparePage} />
               </Switch>
             </div>
             </Context.Provider>
-          </BrowserRouter>
+          </Router>
         </div>
       </Fragment>
     );

@@ -1,9 +1,9 @@
-import React, { useState, useRef, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 
 import './card.css'
 import DetailModal from '../../pages/detail/DetailModal'
 
-import { Button, Badge, Container, Modal, ProgressBar, Spinner, OverlayTrigger, Tooltip, Form } from 'react-bootstrap';
+import { Modal, Spinner, OverlayTrigger, Tooltip, Form } from 'react-bootstrap';
 import Context from '../../store/context';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -23,8 +23,6 @@ library.add(
 
 function PokeCard(props) {
 
-    const name = useRef();
-
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -37,10 +35,6 @@ function PokeCard(props) {
     const { pokemonList, action } = useContext(Context);
 
     const [isFav, setIsFav] = useState(props.poke.isFav);
-
-    const compareChecked = useRef();
-
-    let compareList = [];
 
     useEffect(() => {
         setIsFav(props.poke.isFav);
@@ -111,7 +105,7 @@ function PokeCard(props) {
                     </span>
                 </div>
                 <div className="card-image">
-                    <img src={`https://pokeres.bastionbot.org/images/pokemon/${props.poke.id}.png`} ></img>
+                    <img src={`https://pokeres.bastionbot.org/images/pokemon/${props.poke.id}.png`} alt="pokeman"></img>
                 </div>
                 <div className="card-footer" onClick={onPokemonSelected}>
                     <div className="card-footer-name">{props.poke.name}</div>
