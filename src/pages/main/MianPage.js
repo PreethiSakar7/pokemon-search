@@ -53,7 +53,7 @@ function MainPage() {
             </div>
             <div className={style.pages}>
               <Switch>
-                <Route exact path="/pokemon-search" component={HomePage}/>
+                <Route exact path="/" component={HomePage}/>
                 <Route path="/compare/:compareList" component={ComparePage} />
               </Switch>
             </div>
