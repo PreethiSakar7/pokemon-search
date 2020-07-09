@@ -51,7 +51,7 @@ function ComparePage(props) {
     return (
         <Container fluid className="compare-layout">
             <div className="compare-header">
-            <Button href="/pokemon-search" variant="warning" 
+            <Button href="/" variant="warning" 
                 >Go Home</Button>
 
             </div>
