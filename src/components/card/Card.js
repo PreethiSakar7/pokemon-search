@@ -105,7 +105,8 @@ function PokeCard(props) {
                     </span>
                 </div>
                 <div className="card-image">
-                    <img src={`https://pokeres.bastionbot.org/images/pokemon/${props.poke.id}.png`} alt="pokeman"></img>
+                    {/* <img src={`https://pokeres.bastionbot.org/images/pokemon/${props.poke.id}.png`} alt="pokeman"></img> */}
+                    <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.poke.id}.png`} alt={props.poke.name}></img>
                 </div>
                 <div className="card-footer" onClick={onPokemonSelected}>
                     <div className="card-footer-name">{props.poke.name}</div>

@@ -27,7 +27,7 @@ function MainPage() {
   const getAllPokeman = async () => {
     let localPokemonList = JSON.parse(localStorage.getItem('pokemonList'));
     if (!localPokemonList) {
-      const url = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1000';
+      const url = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=100';
       const response = await fetch(url);
       const jsonRes = await response.json();
       jsonRes.results.forEach( type => {
